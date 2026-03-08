@@ -1,4 +1,6 @@
-efinance
+# ETF 日报云端版依赖
+# A 股数据改用腾讯 API（纯 requests），不再需要 efinance / akshare
+requests
 yfinance
 pandas
 python-dateutil
