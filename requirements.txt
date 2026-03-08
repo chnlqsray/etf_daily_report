@@ -1,0 +1,4 @@
+efinance
+yfinance
+pandas
+python-dateutil
