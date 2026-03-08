@@ -1,0 +1,32 @@
+name: ETF Daily Report
+
+on:
+  schedule:
+    # 英国时间早上 8:30（UTC 时间 8:30，夏令时期间为英国时间 9:30）
+    # 仅周一至周五运行，避免浪费配额
+    - cron: '30 8 * * 1-5'
+  workflow_dispatch:  # 保留手动触发，方便测试
+
+jobs:
+  send-report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 安装 Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: 安装依赖
+        run: pip install -r requirements.txt
+
+      - name: 运行 ETF 日报脚本
+        env:
+          MY_EMAIL_SENDER:   ${{ secrets.MY_EMAIL_SENDER }}
+          MY_EMAIL_PWD:      ${{ secrets.MY_EMAIL_PWD }}
+          MY_EMAIL_RECEIVER: ${{ secrets.MY_EMAIL_RECEIVER }}
+        run: python -u etf_daily_cloud.py
