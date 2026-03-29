@@ -85,6 +85,7 @@ Go to Actions → ETF Daily Report → Run workflow to trigger a manual test run
 etf_daily_report/
 ├── etf_daily_cloud.py      # 主脚本：数据拉取、计算、HTML生成、邮件发送
 ├── etf_daily.yml           # GitHub Actions workflow 配置
+├── ETF.webp                # 运行结果示例图
 └── requirements.txt        # 依赖列表
 ```
 
